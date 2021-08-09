@@ -1,0 +1,25 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+header {
+  width: 70%;
+  gap: 7rem;
+  justify-content: center;
+  margin: auto;
+  padding: 0 3em;
+  font-weight: 800;
+  display: flex;
+  font-size: 20px;
+}
+
+footer {
+  margin-top: 2rem;
+  width: 100%;
+  border-top: 1px solid #333;
+}
+
+.page-footer {
+  padding: 2rem 1rem;
+  font-size: 1.25rem;
+}

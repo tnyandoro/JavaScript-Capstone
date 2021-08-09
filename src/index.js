@@ -1,6 +1,15 @@
-const $ = require('jquery');
+import _ from 'lodash';
+import './style.css';
 
-$('body').css({ 'background-color': '#eee' });
-$('h1#title')
-  .css({ 'font-size': '80px', 'text-align': 'center', 'margin-top': '100px' })
-  .text('Hello, world');
+function component() {
+  const element = document.createElement('div');
+
+  // Lodash, currently included via a script, is required for this line to work
+  // Lodash, now imported by this script
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.classList.add('hello');
+
+  return element;
+}
+
+document.body.appendChild(component());
