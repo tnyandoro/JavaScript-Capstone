@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.15.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -10,13 +11,18 @@
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.20.1",
     "webpack": "^5.49.0",
-    "webpack-cli": "^4.7.2"
+    "webpack-cli": "^4.7.2",
+    "webpack-manifest-plugin": "^4.0.2",
+    "webpack-nano": "^1.1.1"
   },
   "name": "javascript-capstone",
   "description": "If you are not familiar with linters, read [root level README](../README.md).",
   "version": "1.0.0",
   "main": "index.js",
+  "build": "webpack",
   "dependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "abab": "^2.0.5",
     "abbrev": "^1.1.1",
     "acorn": "^8.4.1",
@@ -53,6 +59,7 @@
     "aws-sign2": "^0.7.0",
     "aws4": "^1.11.0",
     "axe-core": "^4.3.2",
+    "babel-loader": "^8.2.2",
     "bail": "^1.0.5",
     "balanced-match": "^1.0.2",
     "base64-js": "^1.5.1",
@@ -236,6 +243,7 @@
     "hosted-git-info": "^4.0.2",
     "html-encoding-sniffer": "^2.0.1",
     "html-tags": "^3.1.0",
+    "html-webpack-plugin": "^5.3.2",
     "htmlparser2": "^3.10.1",
     "http-cache-semantics": "^4.1.0",
     "http-proxy-agent": "^4.0.1",
@@ -385,6 +393,7 @@
     "normalize-range": "^0.1.2",
     "normalize-selector": "^0.2.0",
     "normalize-url": "^6.1.0",
+    "npm-install-webpack-plugin": "^4.0.5",
     "npm-package-arg": "^8.1.5",
     "npm-registry-fetch": "^11.0.0",
     "npm-run-path": "^4.0.1",
@@ -605,7 +614,11 @@
     "zwitch": "^1.0.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve",
+    "deploy": "gh-pages -d dist",
+    "build": "webpack --watch",
+    "server": "node server.js"
   },
   "repository": {
     "type": "git",
