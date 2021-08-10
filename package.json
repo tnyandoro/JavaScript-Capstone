@@ -33,12 +33,11 @@
     "lodash": "^4.17.21"
   },
   "name": "javascript-capstone",
-  "description": "If you are not familiar with linters, read [root level README](../README.md).",
+  "description": "A Javascript restaurant app that connects to API's",
   "version": "1.0.0",
   "main": "index.js",
-  "build": "webpack",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack serve",
     "deploy": "gh-pages -d dist",
     "build": "webpack --watch",
