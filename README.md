@@ -43,11 +43,11 @@ A Morden Browser
 - LinkedIn: [Tendai Nyandoro](https://www.linkedin.com/in/tendai-nyandoro/)
 
 
-👤 **Tendai Nyandoro**
+👤 **Donat UWAMAHORO**
 
-- GitHub: [@Tendai Nyandoro](https://github.com/tnyandoro)
-- Twitter: [@tendainyandoro](https://twitter.com/tendainyandoro)
-- LinkedIn: [Tendai Nyandoro](https://www.linkedin.com/in/tendai-nyandoro/)
+- GitHub: [@Donat UWAMAHORO](https://github.com/uwadonat)
+- Twitter: [@Donat UWAMAHORO](https://twitter.com/uwahoroDonat)
+- LinkedIn: [Donat UWAMAHORO](https://www.linkedin.com/in/uwadonat/)
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
