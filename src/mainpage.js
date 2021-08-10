@@ -14,7 +14,14 @@ const displayUI = () => {
   const main = document.querySelector('#main');
   main.classList.add('frost');
 
-  
+  ui.querySelector('[data-id=close]').addEventListener('click', () => {
+    document.body.removeChild(ui);
+    main.classList.remove('frost');
+    document.body.classList.remove('scrolling');
+  });
+
+  document.body.classList.add('scrolling');
+  document.body.appendChild(ui);
 };
 
 const card = document.createElement('div');
