@@ -1,64 +1,39 @@
-![Microverse](https://img.shields.io/badge/Microverse-blueviolet)
+# Restaurant-page-webpack
 
-> The leaderboard website displays scores submitted by different players.
+> This is a Restuarant App Developed in Vanilla JavaScript. The main objective for this project is to learn about basic JavaScript concepts, functions, arrays and objects mainly DOM manipulation.
 
-![Screenshot]()
+### Screenshots
 
-The Javascript Capstone website displays scores submitted by different players. It also allows you to submit your score. All data is preserved thanks to the external [API service](https://www.notion.so/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3).
+|Main Project page
+
+|![Restaurant](https://user-images.githubusercontent.com/30318155/110389732-9c7a8d80-806d-11eb-9362-3f5e60bb299a.png)|
 
 ## Built With
 
-- HTML
-- CSS
-- JavaScript
+- HTML5
+- CSS3
 - Bootstrap
+- Font Awesome
+- JavaScript
+
+## Our Project
+
+This project is found on the following Repo [Restaurant](https://github.com/tnyandoro/restaurant-page-webpack/tree/feature/webpage/)
 
 ## Live Demo
 
-[Live Demo Link](https://tnyandoro.github.io/JavaScript Capstone/?)
-
-## Getting Started
-
-To get a local copy up and running follow these simple example steps.
+You can view the live demo of the project [Here!](https://loving-sinoussi-4b12ea.netlify.app/)
 
 ### Prerequisites
 
-- NodeJS - [v16.x](https://nodejs.org/en/)
+A Morden Browser
 
 ### Setup
-
-```bash
-git clone 
-cd ./leaderboard
-```
-
-### Install
-
-```bash
-npm install
-```
-
-### Usage
-
-```bash
-npm run start
-Project is running at http://localhost:8080/
-or 
-npm run server
-
-in your browser go to http://localhost:3000
-
-```
-
-### Build
-
-```bash
-npm run build
-```
-
-
-```
-
+- Go to [https://github.com/tnyandoro/restaurant-page-webpack/tree/feature/webpage]
+- Clone the project to your local machine
+- Cd into your directory
+- Run npm install
+- Type: npm run build
 ## Authors
 
 👤 **Tendai Nyandoro**
@@ -68,19 +43,16 @@ npm run build
 - LinkedIn: [Tendai Nyandoro](https://www.linkedin.com/in/tendai-nyandoro/)
 
 
-**Donat UWAMAHORO**
+👤 **Tendai Nyandoro**
 
-- Github: [![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/uwadonat)
-- Linkedin: [![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/uwadonat)
-- Twitter: [![](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/uwahoroDonat)
-
-
-
+- GitHub: [@Tendai Nyandoro](https://github.com/tnyandoro)
+- Twitter: [@tendainyandoro](https://twitter.com/tendainyandoro)
+- LinkedIn: [Tendai Nyandoro](https://www.linkedin.com/in/tendai-nyandoro/)
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
+Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/tnyandoro/)/).
+Feel free to check the [issues page](https://github.com/tnyandoro/restaurant-page-webpack/issues).
 
 ## Show your support
 
@@ -88,10 +60,10 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- [Microverse](https://www.microverse.org/)
-- [Leaderboard API Service]()
-- [Bootswatch](https://bootswatch.com/)
+- This project was inspired by the [Microverse](https://www.microverse.org/) for the  program
+- Thanks to Photo by Emre Can from Pexels
+
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+MIT License
