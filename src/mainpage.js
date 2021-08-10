@@ -24,6 +24,9 @@ const displayUI = () => {
   document.body.appendChild(ui);
 };
 
+const gridcontainer = document.documentElement('div');
+gridcontainer.classList.add('gridcontainer');
+
 const card = document.createElement('div');
 card.classList.add('card');
 card.innerHTML = `
