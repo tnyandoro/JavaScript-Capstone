@@ -1,12 +1,12 @@
-# Restaurant-page-webpack
+# JavaScript Capstone Restuarant APP using API
 
-> This is a Restuarant App Developed in Vanilla JavaScript. The main objective for this project is to learn about basic JavaScript concepts, functions, arrays and objects mainly DOM manipulation.
+> This is a Restuarant App Developed in Vanilla JavaScript. The main objective for this project is to learn about basic JavaScript concepts, functions, arrays and objects DOM manipulation and connect to API's.
 
 ### Screenshots
 
 |Main Project page
 
-|![Restaurant](https://user-images.githubusercontent.com/30318155/110389732-9c7a8d80-806d-11eb-9362-3f5e60bb299a.png)|
+|![Fastantistic Restaurant]()|
 
 ## Built With
 
@@ -18,18 +18,18 @@
 
 ## Our Project
 
-This project is found on the following Repo [Restaurant](https://github.com/tnyandoro/restaurant-page-webpack/tree/feature/webpage/)
+This project is found on the following Repo [Fantastic Restaurant](https://github.com/tnyandoro/JavaScript-Capstone/)
 
 ## Live Demo
 
-You can view the live demo of the project [Here!](https://loving-sinoussi-4b12ea.netlify.app/)
+You can view the live demo of the project [Here!](/)
 
 ### Prerequisites
 
 A Morden Browser
 
 ### Setup
-- Go to [https://github.com/tnyandoro/restaurant-page-webpack/tree/feature/webpage]
+- Go to [https://github.com/tnyandoro/JavaScript-Capstone]
 - Clone the project to your local machine
 - Cd into your directory
 - Run npm install
@@ -61,7 +61,7 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - This project was inspired by the [Microverse](https://www.microverse.org/) for the  program
-- Thanks to Photo by Emre Can from Pexels
+- Thanks to
 
 
 ## 📝 License
