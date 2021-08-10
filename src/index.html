@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./bootstrap.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
@@ -23,7 +24,75 @@
       <p>Area</p>
     </header>
   </div>
-  <div id="main"></div>
+  <div id="home">
+    <main>
+      <div class="row grid-container">
+        <div class="column">
+          <div class="card">
+            <img src="../images/food1.jpg" alt="" class="food-image" />
+            <div class="card-body">
+              <div class="card-header">
+                <h4>Potato Salad</h4>
+                <div class="like-button">
+                  <button data-id="like-meal" class ="like-food">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <p class="likes"><span data-id="likes">0</span> Likes</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button data-id="comments" class="primary-button">Comments</button><br><br>
+                <button data-id="reservations" class="primary-button">Reservations</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <img src="../images/food4.jpg" alt="" class="card-image" />
+            <div class="card-body">
+              <div class="card-header">
+                <h4>Potato Salad</h4>
+                <div class="like-button">
+                  <button data-id="like-meal">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <p><span data-id="likes">0</span> Likes</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button data-id="comments" class="primary-button">Comments</button><br><br>
+                <button data-id="reservations" class="primary-button">Reservations</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+            <img src="../images/food3.jpg" alt="" class="card-image" />
+            <div class="card-body">
+              <div class="card-header">
+                <h4>Potato Salad</h4>
+                <div class="like-button">
+                  <button data-id="like-meal">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <p><span data-id="likes">0</span> Likes</p>
+                </div>
+              </div>
+              <div class="card-buttons">
+                <button data-id="comments" class="primary-button">Comments</button><br><br>
+                <button data-id="reservations" class="primary-button">Reservations</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
   <footer>
     <p class="page-footer">Created by Microverse students under CC license</p>
   </footer>

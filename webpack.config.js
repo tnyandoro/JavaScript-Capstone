@@ -3,9 +3,6 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const options = {};
-const mode = process.env.NODE_ENV === 'development';
-// Temporary workaround for browserslist a bug thats being patched in the near future
-const target = process.env.NODE_ENV === 'production' ? 'browserslist' : 'web';
 
 module.exports = {
   mode: 'development',
@@ -27,6 +24,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
       },
       {
         test: /\.js$/,
