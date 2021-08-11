@@ -1,4 +1,5 @@
 const path = require('path');
+const express = require('express');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 

@@ -1,3 +1,5 @@
-import { mainpage } from "./mainpage";
-// import commentPage from "./comment.js";
+import mainpage from './mainpage.js';
+import commentPage from './comment.js';
 
+mainpage();
+commentPage();
