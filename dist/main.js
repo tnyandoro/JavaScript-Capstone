@@ -2,103 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/comment.js":
-/*!************************!*\
-  !*** ./src/comment.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-// export default
-function commentPage() {
-  var comment = document.getElementById('comment');
-  var commentDiv = document.createElement('div');
-  commentDiv.className = 'comment-div';
-  var imageDiv = document.createElement('div');
-  imageDiv.className = 'image-div';
-  var image = document.createElement('img');
-  image.src = '../images/food1.jpg';
-  image.className = 'space-image';
-  var deleteBtn = document.createElement('button');
-  deleteBtn.textContent = 'delete';
-  var spaceDiv = document.createElement('div');
-  spaceDiv.className = 'space-div';
-  var spaceTitle = document.createElement('h2');
-  spaceTitle.className = 'space-title';
-  spaceTitle.textContent = 'space3';
-  var spaceDesc = document.createElement('div');
-  spaceDesc.className = 'space-desc';
-  var spaceLeft = document.createElement('div');
-  var spaceRight = document.createElement('div');
-  var category = document.createElement('h2');
-  category.textContent = 'Salade';
-  var price = document.createElement('h2');
-  price.textContent = '$5';
-  var weight = document.createElement('h2');
-  weight.textContent = '500';
-  var ingredient = document.createElement('h2');
-  ingredient.textContent = 'Olive oil, meat, eggs';
-  var displayCommentDiv = document.createElement('div');
-  var commentNumber = document.createElement('h2');
-  commentNumber.className = 'comment-Number';
-  commentNumber.textContent = 'Comment (1)'; // here we will create ul with loop to display all comment
-
-  var comment1 = document.createElement('p');
-  comment1.textContent = 'comment 1';
-  var addComment = document.createElement('form');
-  addComment.className = 'add-comment';
-  var userNameDiv = document.createElement('div');
-  var userName = document.createElement('input');
-  userName.type = 'text';
-  userName.id = 'name';
-  userName.placeholder = 'Your name';
-  var addCommentTitle = document.createElement('h2');
-  addCommentTitle.className = 'add-comment-title';
-  addCommentTitle.textContent = 'Add a comment';
-  var commentTextDiv = document.createElement('div');
-  var commentText = document.createElement('textarea');
-  userName.type = 'text';
-  userName.id = 'comment-text';
-  userName.placeholder = 'Your insights';
-  var submitBtnDiv = document.createElement('div');
-  var submitBtn = document.createElement('input');
-  submitBtn.type = 'button';
-  submitBtn.id = 'addCommentbtn';
-  submitBtn.value = 'Submit';
-  commentDiv.appendChild(imageDiv);
-  imageDiv.appendChild(image);
-  imageDiv.appendChild(deleteBtn);
-  commentDiv.appendChild(spaceDiv);
-  spaceDiv.appendChild(spaceTitle);
-  spaceDiv.appendChild(spaceDesc);
-  spaceDesc.appendChild(spaceLeft);
-  spaceDesc.appendChild(spaceRight);
-  spaceLeft.appendChild(category);
-  spaceLeft.appendChild(price);
-  spaceRight.appendChild(weight);
-  spaceRight.appendChild(ingredient);
-  commentDiv.appendChild(displayCommentDiv);
-  displayCommentDiv.appendChild(commentNumber);
-  displayCommentDiv.appendChild(comment1);
-  commentDiv.appendChild(addComment);
-  addComment.appendChild(addCommentTitle);
-  addComment.appendChild(userNameDiv);
-  userNameDiv.appendChild(userName);
-  addComment.appendChild(commentTextDiv);
-  commentTextDiv.appendChild(commentText);
-  addComment.appendChild(submitBtnDiv);
-  addComment.appendChild(submitBtn);
-  comment.appendChild(commentDiv);
-  return commentDiv;
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (commentPage);
-
-/***/ }),
-
 /***/ "./src/mainpage.js":
 /*!*************************!*\
   !*** ./src/mainpage.js ***!
@@ -251,11 +154,10 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mainpage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mainpage.js */ "./src/mainpage.js");
-/* harmony import */ var _comment_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comment.js */ "./src/comment.js");
-
+ // import commentPage from './comment.js';
 
 (0,_mainpage_js__WEBPACK_IMPORTED_MODULE_0__.default)();
-(0,_comment_js__WEBPACK_IMPORTED_MODULE_1__.default)();
+commentPage();
 })();
 
 /******/ })()
