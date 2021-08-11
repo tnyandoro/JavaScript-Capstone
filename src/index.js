@@ -21,3 +21,5 @@ async function startCommenting() {
   document.getElementById('addCommentbtn').addEventListener('click', () => {
     comment.addComment();
   }, false);
+
+  document.getElementById('comment-btn').addEventListener('click', commentPage);

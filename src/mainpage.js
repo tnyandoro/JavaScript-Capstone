@@ -38,6 +38,7 @@ function mainpage() {
 
   const commentsBtn = document.createElement('button');
   commentsBtn.classList = 'btn-primary';
+  commentsBtn.id = 'comment-btn';
   commentsBtn.textContent = 'Comments';
 
   document.body.append(foodList);

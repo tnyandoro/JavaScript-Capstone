@@ -410,6 +410,7 @@ function mainpage() {
   cardBtns.classList = 'card-buttons';
   var commentsBtn = document.createElement('button');
   commentsBtn.classList = 'btn-primary';
+  commentsBtn.id = 'comment-btn';
   commentsBtn.textContent = 'Comments';
   document.body.append(foodList);
   foodList.appendChild(card);
@@ -1958,6 +1959,7 @@ document.getElementById('addCommentbtn').addEventListener('click', function () {
 document.getElementById('addCommentbtn').addEventListener('click', function () {
   comment.addComment();
 }, false);
+document.getElementById('comment-btn').addEventListener('click', _comment_js__WEBPACK_IMPORTED_MODULE_5__.default);
 })();
 
 /******/ })()
