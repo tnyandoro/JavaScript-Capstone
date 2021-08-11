@@ -39,6 +39,7 @@
   "description": "A Javascript restaurant app that connects to API's",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "start": "webpack serve",

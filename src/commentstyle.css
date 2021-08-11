@@ -1,0 +1,28 @@
+.comment-div {
+    width: 50%;
+    justify-content: center;
+    margin: auto;
+   }
+   
+   .image-div {
+       display:grid;
+       grid-template-columns: 80% 20%;
+   }
+   
+   .space-title, .add-comment-title, .comment-Number {
+       display: flex;
+       justify-content: center;
+   }
+   
+   .space-desc {
+    display: flex;
+    justify-content: space-between;
+   }
+   
+   .add-comment div {
+       margin-bottom: 20px;
+     }
+   
+   .space-image {
+       width: 100%;
+   }
