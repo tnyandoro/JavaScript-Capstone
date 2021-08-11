@@ -5,7 +5,7 @@ const INVOLVEMENT_URL = 'https://us-central1-involvement-api.cloudfunctions.net/
 const USER_COMMENT = 'user';
 const USER_ID = 'l1XEeeRJqWJBU1EqT3Cz';
 
-export const addComment = async (user, comment) => {
+export const addComments = async (user, comment) => {
   const data = {};
   data.user = user;
   data.comment = comment;
