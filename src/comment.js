@@ -1,6 +1,7 @@
+// export default 
+function commentPage() {
+    const comment = document.getElementById('comment');
 
-const comment = document.getElementById('comment');
-console.log(comment);
 const commentDiv = document.createElement('div');
 commentDiv.className = 'comment-div';
 const imageDiv = document.createElement('div');
@@ -83,4 +84,10 @@ addComment.appendChild(submitBtn);
 
 
 comment.appendChild(commentDiv);
+
+return commentDiv;
+
+}
+
+
 
