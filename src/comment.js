@@ -34,6 +34,7 @@ function commentPage() {
   commentNumber.textContent = 'Comment (1)';
   // here we will create ul with loop to display all comment
   const comment1 = document.createElement('p');
+  comment1.className = "comment-list";
   comment1.textContent = 'comment 1';
 
   const addComment = document.createElement('form');
@@ -56,7 +57,8 @@ function commentPage() {
   submitBtn.type = 'button';
   submitBtn.id = 'addCommentbtn';
   submitBtn.value = 'Submit';
-
+  const errorMessage = document.createElement('p');
+  errorMessage.id = 'error';
   commentDiv.appendChild(imageDiv);
   imageDiv.appendChild(image);
   imageDiv.appendChild(deleteBtn);
@@ -81,7 +83,7 @@ function commentPage() {
   commentTextDiv.appendChild(commentText);
   addComment.appendChild(submitBtnDiv);
   addComment.appendChild(submitBtn);
-
+  addComment.appendChild(errorMessage);
   comment.appendChild(commentDiv);
 
   return commentDiv;
