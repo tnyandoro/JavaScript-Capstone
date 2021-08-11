@@ -85,6 +85,18 @@ function commentPage() {
   comment.appendChild(commentDiv);
 
   return commentDiv;
+
+  add - comment.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const user = nameInput.value;
+    const comment = Number(scoreInput.value);
+
+    await API.addComments(user, comment);
+    await refreshComments();
+
+    form.reset();
+  });
 }
 
 export default commentPage;
