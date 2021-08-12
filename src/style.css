@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 header {
@@ -37,11 +37,6 @@ header {
   width: 100%;
 }
 
-.like-btn {
-  display: flex;
-  justify-content: center;
-}
-
 .row:after {
   content: "";
   display: table;
@@ -69,4 +64,8 @@ footer {
     display: block;
     margin-bottom: 20px;
   }
+}
+
+#home {
+  position: relative;
 }
