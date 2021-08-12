@@ -34,6 +34,10 @@ header {
   padding: 0 10px;
 }
 
+.feedback {
+  float: right;
+}
+
 .food-list {
   margin-left: 5%;
   justify-content: center;
