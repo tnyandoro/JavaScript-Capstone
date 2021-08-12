@@ -5,10 +5,10 @@ const commentPopup = (meal) => {
   const commentPopup = document.createElement('div');
   commentPopup.className = 'popup';
   commentPopup.innerHTML = `
+               <button type="button" class="close-btn">X</button>
                <div class="row comment-container">
                     <div class="col-12 image-div text-center"> 
                       <div class="image-container"><img src=${meal.strMealThumb} class="img-fluid"></div>
-                      <button type="button" class="close-btn">X</button>
                     </div>
                     <div class='col-12 text-center'> <h2>${meal.strMeal}</h2></div>
                     <div class="meal-desc row>
