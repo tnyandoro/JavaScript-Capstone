@@ -1,7 +1,9 @@
 .popup {
+  background-color: aqua;
   position: absolute;
-  top: 0px;
-  width: 100%;
+  top: 1px;
+  margin-left: 15%;
+  width: 60%;
   z-index: 2000;
 }
 
@@ -10,7 +12,23 @@
   margin-top: 50px;
 }
 
-.comment-container {
-  background-color: aqua;
+.image-container {
+  width: 100%;
   color: black;
+}
+
+.imgg {
+  width: 70%;
+}
+
+.comment-container {
+  padding: 10px;
+}
+
+.form-control {
+  width: 50%;
+}
+
+.commentForm {
+  margin-left: 10px;
 }
