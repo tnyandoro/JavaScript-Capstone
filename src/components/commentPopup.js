@@ -11,16 +11,8 @@ const commentPopup = (meal) => {
                       <div class="image-container"><img src=${meal.strMealThumb} class="img-fluid"></div>
                     </div>
                     <div class='col-12 text-center'> <h2>${meal.strMeal}</h2></div>
-                    <div class="meal-desc row>
-                       <div class="row col-12">
-                          <div class="col-6">${meal.strTags}</div>
-                          <div class="col-6">${meal.strIngredient1}</div>
-                       </div>
-                       <div  class="row col-12">
-                         <div class="col-6">${meal.strIngredient8}</div>
-                         <div class="col-6">${meal.dateModified}</div>
-                       </div>
-                    </div>
+                    <div class='col-12'>${meal.strInstructions}</div>
+                   
                     <div class='col-12 text-center'> <h2> Add a comment </h2></div>
                     <div class="commentForm form-group">
                        <div><input type="text" id="name" name="name" class="form-control" placeholder="Your Name"></div><br>
