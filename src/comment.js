@@ -34,7 +34,7 @@ function commentPage() {
   commentNumber.textContent = 'Comment (1)';
   // here we will create ul with loop to display all comment
   const comment1 = document.createElement('p');
-  comment1.className = "comment-list";
+  comment1.className = 'comment-list';
   comment1.textContent = 'comment 1';
 
   const addComment = document.createElement('form');
