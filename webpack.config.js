@@ -26,6 +26,13 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '/public/icons/[name].[ext]',
+        },
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
