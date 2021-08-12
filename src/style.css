@@ -3,18 +3,25 @@
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 header {
-  width: 70%;
-  gap: 7rem;
+  width: 100%;
+  background-color: #c69c2a;
+  gap: 5rem;
   justify-content: center;
-  margin: auto;
+  margin: 2rem;
   padding: 0 3em;
   font-weight: 800;
   display: flex;
   font-size: 20px;
+  border-bottom: #333 solid 1px;
+}
+
+.menu-header {
+  text-align: center;
+  justify-content: center;
 }
 
 #grid-container {
