@@ -1,4 +1,5 @@
 import './commentPopup.css';
+import Meal from '../api1';
 
 const commentPopup = (meal) => {
   const mainContainer = document.getElementById('home');
@@ -12,12 +13,13 @@ const commentPopup = (meal) => {
                     </div>
                     <div class='col-12 text-center'> <h2>${meal.strMeal}</h2></div>
                     <div class='col-12'>${meal.strInstructions}</div>
-                   
+                    <h3>Comments</h3>
+                    <div class='comment-list'></div>
                     <div class='col-12 text-center'> <h2> Add a comment </h2></div>
                     <div class="commentForm form-group">
                        <div><input type="text" id="name" name="name" class="form-control" placeholder="Your Name"></div><br>
                        <div> <textarea id="comment-text" name="comment-text" class="form-control" rows="4" cols="50" placeholder="Your insight">Your Insight</textarea></div><br>
-                       <div><input type="submit" value="Submit"></div>
+                       <div><button type="button" class='sub-btn' data-itemid=${meal.idMeal}>Submit</button></div>
                     </div>
                 </div>
     `;
@@ -26,6 +28,11 @@ const commentPopup = (meal) => {
   closeBtn.addEventListener('click', () => {
     commentPopup.remove();
   });
+  const subBtn = document.querySelector('.sub-btn');
+  subBtn.addEventListener('click', () => {
+    Meal.postComment(subBtn.dataset.itemid, document.querySelector('#name').value, document.querySelector('#comment-text').value);
+  });
+  Meal.getComments(meal.idMeal);
 };
 
 export default commentPopup;
