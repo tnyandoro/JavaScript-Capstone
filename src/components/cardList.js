@@ -3,8 +3,12 @@ import card from './card';
 import Meal from '../api1';
 
 const cardList = (list, likes, category) => {
+  const navLinksContainer = document.getElementById('navLinks');
+  const activeLinkSpan = navLinksContainer.querySelectorAll('.nav-link.active > span')[0];
+  if (activeLinkSpan) activeLinkSpan.innerHTML = `(${list.length})`;
+
   const listContainer = document.getElementById('meal-items');
-  console.log(likes);
+
   listContainer.innerHTML = '';
   list.forEach((meal) => {
     listContainer.innerHTML += card(meal, likes.find((item) => item.item_id === Number(meal.idMeal)), category);

@@ -1,4 +1,7 @@
 const commentList = (comments) => {
+  const commentCount = document.getElementById('commentCount');
+  commentCount.innerHTML = `${comments.length}`;
+
   const commentList = document.querySelector('.comment-list');
   commentList.innerHTML = comments.map((comment) => `
           <div class="comment">

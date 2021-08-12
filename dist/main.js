@@ -28,9 +28,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_cardList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/cardList */ "./src/components/cardList.js");
-/* harmony import */ var _components_commentPopup__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/commentPopup */ "./src/components/commentPopup.js");
-/* harmony import */ var _components_commentList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/commentList */ "./src/components/commentList.js");
+/* harmony import */ var _components_cardList_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/cardList.js */ "./src/components/cardList.js");
+/* harmony import */ var _components_navLinks_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/navLinks.js */ "./src/components/navLinks.js");
+/* harmony import */ var _components_commentPopup_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/commentPopup.js */ "./src/components/commentPopup.js");
+/* harmony import */ var _components_commentList_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/commentList.js */ "./src/components/commentList.js");
+
 
 
 
@@ -48,34 +50,51 @@ var Meal = /*#__PURE__*/function () {
     key: "getList",
     value: function () {
       var _getList = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee(category) {
-        var response, list, likeResponse, likes;
+        var categoryKey, categoryData, response, list, likeResponse, likes;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                categoryKey = "category_".concat(category);
+                categoryData = localStorage.getItem(categoryKey);
+
+                if (categoryData) {
+                  _context.next = 13;
+                  break;
+                }
+
+                _context.next = 5;
                 return fetch("https://www.themealdb.com/api/json/v1/1/filter.php?c=".concat(category));
 
-              case 2:
+              case 5:
                 response = _context.sent;
-                _context.next = 5;
+                _context.next = 8;
                 return response.json();
 
-              case 5:
-                list = _context.sent;
-                _context.next = 8;
-                return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8wqVp7MJ1CKmqeCBEWgG/likes');
-
               case 8:
-                likeResponse = _context.sent;
-                _context.next = 11;
-                return likeResponse.json();
-
-              case 11:
-                likes = _context.sent;
-                (0,_components_cardList__WEBPACK_IMPORTED_MODULE_4__.default)(list.meals, likes, category);
+                list = _context.sent;
+                categoryData = list.meals;
+                localStorage.setItem(categoryKey, JSON.stringify(categoryData));
+                _context.next = 14;
+                break;
 
               case 13:
+                categoryData = JSON.parse(categoryData);
+
+              case 14:
+                _context.next = 16;
+                return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8wqVp7MJ1CKmqeCBEWgG/likes');
+
+              case 16:
+                likeResponse = _context.sent;
+                _context.next = 19;
+                return likeResponse.json();
+
+              case 19:
+                likes = _context.sent;
+                (0,_components_cardList_js__WEBPACK_IMPORTED_MODULE_4__.default)(categoryData, likes, category);
+
+              case 21:
               case "end":
                 return _context.stop();
             }
@@ -90,32 +109,84 @@ var Meal = /*#__PURE__*/function () {
       return getList;
     }()
   }, {
-    key: "getItem",
+    key: "getCategories",
     value: function () {
-      var _getItem = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2(id) {
-        var response, mealDetails;
+      var _getCategories = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee2() {
+        var categories, response, list;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=".concat(id));
+                categories = localStorage.getItem('categories');
 
-              case 2:
+                if (categories) {
+                  _context2.next = 12;
+                  break;
+                }
+
+                _context2.next = 4;
+                return fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+
+              case 4:
                 response = _context2.sent;
-                _context2.next = 5;
+                _context2.next = 7;
                 return response.json();
 
-              case 5:
-                mealDetails = _context2.sent;
-                (0,_components_commentPopup__WEBPACK_IMPORTED_MODULE_5__.default)(mealDetails.meals[0]);
-
               case 7:
+                list = _context2.sent;
+                categories = list.meals;
+                localStorage.setItem('categories', JSON.stringify(categories));
+                _context2.next = 13;
+                break;
+
+              case 12:
+                categories = JSON.parse(categories);
+
+              case 13:
+                (0,_components_navLinks_js__WEBPACK_IMPORTED_MODULE_5__.default)(categories);
+                return _context2.abrupt("return", categories);
+
+              case 15:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }));
+
+      function getCategories() {
+        return _getCategories.apply(this, arguments);
+      }
+
+      return getCategories;
+    }()
+  }, {
+    key: "getItem",
+    value: function () {
+      var _getItem = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(id) {
+        var response, mealDetails;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=".concat(id));
+
+              case 2:
+                response = _context3.sent;
+                _context3.next = 5;
+                return response.json();
+
+              case 5:
+                mealDetails = _context3.sent;
+                (0,_components_commentPopup_js__WEBPACK_IMPORTED_MODULE_6__.default)(mealDetails.meals[0]);
+
+              case 7:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
       }));
 
       function getItem(_x2) {
@@ -127,13 +198,13 @@ var Meal = /*#__PURE__*/function () {
   }, {
     key: "postComment",
     value: function () {
-      var _postComment = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee3(id, name, comment) {
+      var _postComment = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee4(id, name, comment) {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context3.next = 2;
+                _context4.next = 2;
                 return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8wqVp7MJ1CKmqeCBEWgG/comments', {
                   method: 'POST',
                   body: JSON.stringify({
@@ -147,7 +218,7 @@ var Meal = /*#__PURE__*/function () {
                 });
 
               case 2:
-                response = _context3.sent;
+                response = _context4.sent;
 
                 if (response.status === 201) {
                   this.getComments(id);
@@ -155,10 +226,10 @@ var Meal = /*#__PURE__*/function () {
 
               case 4:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee4, this);
       }));
 
       function postComment(_x3, _x4, _x5) {
@@ -170,30 +241,30 @@ var Meal = /*#__PURE__*/function () {
   }, {
     key: "getComments",
     value: function () {
-      var _getComments = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee4(id) {
+      var _getComments = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee5(id) {
         var response, comments;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee4$(_context4) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                _context4.next = 2;
+                _context5.next = 2;
                 return fetch("https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8wqVp7MJ1CKmqeCBEWgG/comments?item_id=".concat(id));
 
               case 2:
-                response = _context4.sent;
-                _context4.next = 5;
+                response = _context5.sent;
+                _context5.next = 5;
                 return response.json();
 
               case 5:
-                comments = _context4.sent;
-                return _context4.abrupt("return", (0,_components_commentList__WEBPACK_IMPORTED_MODULE_6__.default)(comments));
+                comments = _context5.sent;
+                return _context5.abrupt("return", (0,_components_commentList_js__WEBPACK_IMPORTED_MODULE_7__.default)(comments));
 
               case 7:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }));
 
       function getComments(_x6) {
@@ -205,13 +276,13 @@ var Meal = /*#__PURE__*/function () {
   }, {
     key: "postLike",
     value: function () {
-      var _postLike = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee5(id, category) {
+      var _postLike = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().mark(function _callee6(id, category) {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee5$(_context5) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_3___default().wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                _context5.next = 2;
+                _context6.next = 2;
                 return fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8wqVp7MJ1CKmqeCBEWgG/likes', {
                   method: 'POST',
                   body: JSON.stringify({
@@ -223,7 +294,7 @@ var Meal = /*#__PURE__*/function () {
                 });
 
               case 2:
-                response = _context5.sent;
+                response = _context6.sent;
 
                 if (response.status === 201) {
                   this.getList(category);
@@ -231,10 +302,10 @@ var Meal = /*#__PURE__*/function () {
 
               case 4:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee6, this);
       }));
 
       function postLike(_x7, _x8) {
@@ -267,7 +338,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var card = function card(meal, likeItem, category) {
-  return "\n    <div class=\"card\">\n        <img src=".concat(meal.strMealThumb, ">\n        <div class=\"desc\">\n            <h3>").concat(meal.strMeal, "</h3>\n            <div><span class=\"likes\">").concat(likeItem === undefined ? 0 : likeItem.likes, "</span> likes <button type=\"button\" class=\"like-btn\" data-itemid=").concat(meal.idMeal, " data-cat=").concat(category, "><i class=\"fa fa-heart\"></i></button></div>\n            <button type=\"button\" class=\"comment-btn\" data-itemId=").concat(meal.idMeal, ">Comment</button>\n        </div>\n    </div>\n    ");
+  return "\n    <div class=\"card\">\n        <img src=".concat(meal.strMealThumb, ">\n        <div class=\"desc\">\n            <h3>").concat(meal.strMeal, "</h3>\n            <div class=\"feedback\"><span class=\"likes\">").concat(likeItem === undefined ? 0 : likeItem.likes, "</span> likes <button type=\"button\" class=\"like-btn btn btn-primary\" data-itemid=").concat(meal.idMeal, " data-cat=").concat(category, "><i class=\"fa fa-heart\"></i></button></div>\n            <button type=\"button\" class=\"comment-btn btn-success\" data-itemId=").concat(meal.idMeal, ">Comment</button>\n        </div>\n    </div>\n    ");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (card);
@@ -293,8 +364,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var cardList = function cardList(list, likes, category) {
+  var navLinksContainer = document.getElementById('navLinks');
+  var activeLinkSpan = navLinksContainer.querySelectorAll('.nav-link.active > span')[0];
+  if (activeLinkSpan) activeLinkSpan.innerHTML = "(".concat(list.length, ")");
   var listContainer = document.getElementById('meal-items');
-  console.log(likes);
   listContainer.innerHTML = '';
   list.forEach(function (meal) {
     listContainer.innerHTML += (0,_card__WEBPACK_IMPORTED_MODULE_1__.default)(meal, likes.find(function (item) {
@@ -331,6 +404,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var commentList = function commentList(comments) {
+  var commentCount = document.getElementById('commentCount');
+  commentCount.innerHTML = "".concat(comments.length);
   var commentList = document.querySelector('.comment-list');
   commentList.innerHTML = comments.map(function (comment) {
     return "\n          <div class=\"comment\">\n            <div class=\"comment-author\">".concat(comment.username, "</div>\n            <div class=\"comment-date\">").concat(comment.creation_date, "</div>\n            <div class=\"comment-content\">").concat(comment.comment, "</div>\n          </div>\n        ");
@@ -361,7 +436,7 @@ var commentPopup = function commentPopup(meal) {
   var mainContainer = document.getElementById('home');
   var commentPopup = document.createElement('div');
   commentPopup.className = 'popup';
-  commentPopup.innerHTML = "\n               <button type=\"button\" class=\"close-btn\">X</button>\n               <div class=\"row comment-container\">\n                    <div class=\"col-12 image-div text-center\"> \n                      <div class=\"image-container\"><img src=".concat(meal.strMealThumb, " class=\"img-fluid\"></div>\n                    </div>\n                    <div class='col-12 text-center'> <h2>").concat(meal.strMeal, "</h2></div>\n                    <div class='col-12'>").concat(meal.strInstructions, "</div>\n                    <h3>Comments</h3>\n                    <div class='comment-list'></div>\n                    <div class='col-12 text-center'> <h2> Add a comment </h2></div>\n                    <div class=\"commentForm form-group\">\n                       <div><input type=\"text\" id=\"name\" name=\"name\" class=\"form-control\" placeholder=\"Your Name\"></div><br>\n                       <div> <textarea id=\"comment-text\" name=\"comment-text\" class=\"form-control\" rows=\"4\" cols=\"50\" placeholder=\"Your insight\">Your Insight</textarea></div><br>\n                       <div><button type=\"button\" class='sub-btn' data-itemid=").concat(meal.idMeal, ">Submit</button></div>\n                    </div>\n                </div>\n    ");
+  commentPopup.innerHTML = "\n               <button type=\"button\" class=\"close-btn\">X</button>\n               <div class=\"row comment-container\">\n                    <div class=\"col-12 image-div text-center\"> \n                      <div class=\"image-container\"><img src=".concat(meal.strMealThumb, " class=\"img-fluid\"></div>\n                    </div>\n                    <div class='col-12 text-center'> <h2>").concat(meal.strMeal, "</h2></div>\n                    <div class='col-12'>").concat(meal.strTags, "</div>\n                    <div class='col-12'>").concat(meal.strYoutube, "</div>\n                    <div class='col-12'>").concat(meal.strIngredient1, "</div>\n                    <h3>Comments (<span id=\"commentCount\"></span>)</h3>\n                    <div class='comment-list'></div>\n                    <div class='col-12 text-center'> <h2> Add a comment </h2></div>\n                    <div class=\"commentForm form-group\">\n                       <div><input type=\"text\" id=\"name\" name=\"name\" class=\"form-control\" placeholder=\"Your Name\"></div><br>\n                       <div> <textarea id=\"comment-text\" name=\"comment-text\" class=\"form-control\" rows=\"4\" cols=\"50\" placeholder=\"Your insight\">Your Insight</textarea></div><br>\n                       <div><button type=\"button\" class='sub-btn' data-itemid=").concat(meal.idMeal, ">Submit</button></div>\n                    </div>\n                </div>\n    ");
   mainContainer.appendChild(commentPopup);
   var closeBtn = document.querySelector('.close-btn');
   closeBtn.addEventListener('click', function () {
@@ -378,6 +453,73 @@ var commentPopup = function commentPopup(meal) {
 
 /***/ }),
 
+/***/ "./src/components/navLink.js":
+/*!***********************************!*\
+  !*** ./src/components/navLink.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var navLink = function navLink(category) {
+  return "\n<li class=\"nav-item pt-4\">\n    <a class=\"nav-link\" href=\"#\" category=\"".concat(category, "\">").concat(category, " <span></span></a>\n</li>\n");
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (navLink);
+
+/***/ }),
+
+/***/ "./src/components/navLinks.js":
+/*!************************************!*\
+  !*** ./src/components/navLinks.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _navLink_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navLink.js */ "./src/components/navLink.js");
+/* harmony import */ var _api1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api1.js */ "./src/api1.js");
+
+
+var currentCategory = '';
+
+var navLinks = function navLinks(categories) {
+  var navLinksContainer = document.getElementById('navLinks');
+  navLinksContainer.innerHTML = '';
+  categories.forEach(function (category) {
+    navLinksContainer.innerHTML += (0,_navLink_js__WEBPACK_IMPORTED_MODULE_0__.default)(category.strCategory);
+  });
+  var links = navLinksContainer.querySelectorAll('.nav-link');
+  links[0].classList.add('active');
+  currentCategory = links[0].getAttribute('category');
+  links.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var linkCategory = e.target.getAttribute('category');
+
+      if (currentCategory === linkCategory) {
+        return;
+      }
+
+      links.forEach(function (link) {
+        link.classList.remove('active');
+      });
+      e.target.classList.add('active');
+      _api1_js__WEBPACK_IMPORTED_MODULE_1__.default.getList(linkCategory);
+      currentCategory = linkCategory;
+    });
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (navLinks);
+
+/***/ }),
+
 /***/ "./src/mainpage.js":
 /*!*************************!*\
   !*** ./src/mainpage.js ***!
@@ -389,11 +531,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _api1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api1 */ "./src/api1.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _api1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./api1 */ "./src/api1.js");
+
+
 
 
 function mainpage() {
-  _api1__WEBPACK_IMPORTED_MODULE_0__.default.getList('Seafood');
+  return _mainpage.apply(this, arguments);
+}
+
+function _mainpage() {
+  _mainpage = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
+    var categories;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _api1__WEBPACK_IMPORTED_MODULE_2__.default.getCategories();
+
+          case 2:
+            categories = _context.sent;
+            _context.next = 5;
+            return _api1__WEBPACK_IMPORTED_MODULE_2__.default.getList(categories[0].strCategory);
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _mainpage.apply(this, arguments);
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (mainpage);
@@ -509,7 +681,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "#meal-items {\n  display: grid;\n  grid-template-columns: auto auto auto;\n  grid-gap: 3rem;\n}\n", "",{"version":3,"sources":["webpack://./src/components/cardList.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,qCAAqC;EACrC,cAAc;AAChB","sourcesContent":["#meal-items {\n  display: grid;\n  grid-template-columns: auto auto auto;\n  grid-gap: 3rem;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "#meal-items {\n  display: grid;\n  grid-template-columns: auto auto auto;\n  grid-gap: 3rem;\n}\n\n@media (max-width: 768px) { /*breakpoint*/\n  #meal-items {\n    flex-direction: column;\n  }\n}\n", "",{"version":3,"sources":["webpack://./src/components/cardList.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,qCAAqC;EACrC,cAAc;AAChB;;AAEA,4BAA4B,aAAa;EACvC;IACE,sBAAsB;EACxB;AACF","sourcesContent":["#meal-items {\n  display: grid;\n  grid-template-columns: auto auto auto;\n  grid-gap: 3rem;\n}\n\n@media (max-width: 768px) { /*breakpoint*/\n  #meal-items {\n    flex-direction: column;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -536,7 +708,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".popup {\n  background-color: aqua;\n  position: absolute;\n  top: 1px;\n  margin-left: 15%;\n  width: 60%;\n  z-index: 2000;\n}\n\n.image-div {\n  display: flex;\n  margin-top: 50px;\n}\n\n.image-container {\n  width: 100%;\n  color: black;\n}\n\n.imgg {\n  width: 100%;\n}\n\n.comment-container {\n  padding: 10px;\n}\n\n.form-control {\n  width: 50%;\n}\n\n.commentForm {\n  margin-left: 10px;\n}\n\n.close-btn {\n  display: block;\n  float: right;\n  margin-right: 1rem;\n  margin-top: 1rem;\n}\n", "",{"version":3,"sources":["webpack://./src/components/commentPopup.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;EACtB,kBAAkB;EAClB,QAAQ;EACR,gBAAgB;EAChB,UAAU;EACV,aAAa;AACf;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,UAAU;AACZ;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,cAAc;EACd,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;AAClB","sourcesContent":[".popup {\n  background-color: aqua;\n  position: absolute;\n  top: 1px;\n  margin-left: 15%;\n  width: 60%;\n  z-index: 2000;\n}\n\n.image-div {\n  display: flex;\n  margin-top: 50px;\n}\n\n.image-container {\n  width: 100%;\n  color: black;\n}\n\n.imgg {\n  width: 100%;\n}\n\n.comment-container {\n  padding: 10px;\n}\n\n.form-control {\n  width: 50%;\n}\n\n.commentForm {\n  margin-left: 10px;\n}\n\n.close-btn {\n  display: block;\n  float: right;\n  margin-right: 1rem;\n  margin-top: 1rem;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".popup {\n  background-color: gainsboro;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 2000;\n  height: 999999999999px;\n}\n\n.image-div {\n  display: flex;\n  margin-top: 50px;\n}\n\n.image-container {\n  width: 100%;\n  color: black;\n}\n\n.imgg {\n  width: 100%;\n}\n\n.comment-container {\n  padding: 10px;\n}\n\n.form-control {\n  width: 50%;\n}\n\n.commentForm {\n  margin-left: 10px;\n}\n\n.close-btn {\n  display: block;\n  float: right;\n  margin-right: 1rem;\n  margin-top: 1rem;\n}\n", "",{"version":3,"sources":["webpack://./src/components/commentPopup.css"],"names":[],"mappings":"AAAA;EACE,2BAA2B;EAC3B,kBAAkB;EAClB,MAAM;EACN,WAAW;EACX,aAAa;EACb,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,UAAU;AACZ;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,cAAc;EACd,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;AAClB","sourcesContent":[".popup {\n  background-color: gainsboro;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 2000;\n  height: 999999999999px;\n}\n\n.image-div {\n  display: flex;\n  margin-top: 50px;\n}\n\n.image-container {\n  width: 100%;\n  color: black;\n}\n\n.imgg {\n  width: 100%;\n}\n\n.comment-container {\n  padding: 10px;\n}\n\n.form-control {\n  width: 50%;\n}\n\n.commentForm {\n  margin-left: 10px;\n}\n\n.close-btn {\n  display: block;\n  float: right;\n  margin-right: 1rem;\n  margin-top: 1rem;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -563,7 +735,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: \"Lato\", sans-serif;\n}\n\nheader {\n  width: 100%;\n  background-color: #c69c2a;\n  gap: 5rem;\n  justify-content: center;\n  margin: 2rem;\n  padding: 0 3em;\n  font-weight: 800;\n  display: flex;\n  font-size: 20px;\n  border-bottom: #333 solid 1px;\n}\n\n.menu-header {\n  text-align: center;\n  justify-content: center;\n}\n\n#grid-container {\n  justify-content: center;\n  width: 30%;\n}\n\n.column {\n  float: left;\n  width: 25%;\n  padding: 0 10px;\n}\n\n.food-list {\n  margin-left: 5%;\n  justify-content: center;\n}\n\n.food-image {\n  width: 100%;\n}\n\n.row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n.logo {\n  width: 20px;\n}\n\nfooter {\n  margin-top: 2rem;\n  width: 100%;\n  border-top: 1px solid #333;\n}\n\n.page-footer {\n  padding: 2rem 1rem;\n  font-size: 1.25rem;\n}\n\n@media screen and (max-width: 600px) {\n  .column {\n    width: 100%;\n    display: block;\n    margin-bottom: 20px;\n  }\n}\n\n#home {\n  position: relative;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;AACxB;;AAEA;EACE,+BAA+B;AACjC;;AAEA;EACE,WAAW;EACX,yBAAyB;EACzB,SAAS;EACT,uBAAuB;EACvB,YAAY;EACZ,cAAc;EACd,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,6BAA6B;AAC/B;;AAEA;EACE,kBAAkB;EAClB,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;EACvB,UAAU;AACZ;;AAEA;EACE,WAAW;EACX,UAAU;EACV,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,uBAAuB;AACzB;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,cAAc;EACd,WAAW;AACb;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,gBAAgB;EAChB,WAAW;EACX,0BAA0B;AAC5B;;AAEA;EACE,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE;IACE,WAAW;IACX,cAAc;IACd,mBAAmB;EACrB;AACF;;AAEA;EACE,kBAAkB;AACpB","sourcesContent":["* {\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: \"Lato\", sans-serif;\n}\n\nheader {\n  width: 100%;\n  background-color: #c69c2a;\n  gap: 5rem;\n  justify-content: center;\n  margin: 2rem;\n  padding: 0 3em;\n  font-weight: 800;\n  display: flex;\n  font-size: 20px;\n  border-bottom: #333 solid 1px;\n}\n\n.menu-header {\n  text-align: center;\n  justify-content: center;\n}\n\n#grid-container {\n  justify-content: center;\n  width: 30%;\n}\n\n.column {\n  float: left;\n  width: 25%;\n  padding: 0 10px;\n}\n\n.food-list {\n  margin-left: 5%;\n  justify-content: center;\n}\n\n.food-image {\n  width: 100%;\n}\n\n.row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n.logo {\n  width: 20px;\n}\n\nfooter {\n  margin-top: 2rem;\n  width: 100%;\n  border-top: 1px solid #333;\n}\n\n.page-footer {\n  padding: 2rem 1rem;\n  font-size: 1.25rem;\n}\n\n@media screen and (max-width: 600px) {\n  .column {\n    width: 100%;\n    display: block;\n    margin-bottom: 20px;\n  }\n}\n\n#home {\n  position: relative;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: \"Lato\", sans-serif;\n}\n\nheader {\n  width: 100%;\n  background-color: #c69c2a;\n  gap: 5rem;\n  justify-content: center;\n  margin-bottom: 2rem;\n  font-weight: 800;\n  display: flex;\n  font-size: 20px;\n  border-bottom: #333 solid 1px;\n}\n\n.menu-header {\n  text-align: center;\n  justify-content: center;\n}\n\n#grid-container {\n  justify-content: center;\n  width: 30%;\n}\n\n.img-fluid {\n  width: 300px;\n}\n\n.column {\n  float: left;\n  width: 25%;\n  padding: 0 10px;\n}\n\n.feedback {\n  float: right;\n}\n\n.food-list {\n  margin-left: 5%;\n  justify-content: center;\n}\n\n.food-image {\n  width: 100%;\n}\n\n.row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n.logo {\n  width: 20px;\n}\n\nfooter {\n  margin-top: 2rem;\n  width: 100%;\n  border-top: 1px solid #333;\n}\n\n.page-footer {\n  padding: 2rem 1rem;\n  font-size: 1.25rem;\n}\n\n@media screen and (max-width: 600px) {\n  .column {\n    width: 100%;\n    display: block;\n    margin-bottom: 20px;\n  }\n}\n\n#home {\n  position: relative;\n}\n\n.nav-link span {\n  color: transparent;\n}\n\n.nav-link.active span {\n  color: white;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;AACxB;;AAEA;EACE,+BAA+B;AACjC;;AAEA;EACE,WAAW;EACX,yBAAyB;EACzB,SAAS;EACT,uBAAuB;EACvB,mBAAmB;EACnB,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,6BAA6B;AAC/B;;AAEA;EACE,kBAAkB;EAClB,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;EACvB,UAAU;AACZ;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;EACX,UAAU;EACV,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,eAAe;EACf,uBAAuB;AACzB;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,cAAc;EACd,WAAW;AACb;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,gBAAgB;EAChB,WAAW;EACX,0BAA0B;AAC5B;;AAEA;EACE,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE;IACE,WAAW;IACX,cAAc;IACd,mBAAmB;EACrB;AACF;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,YAAY;AACd","sourcesContent":["* {\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: \"Lato\", sans-serif;\n}\n\nheader {\n  width: 100%;\n  background-color: #c69c2a;\n  gap: 5rem;\n  justify-content: center;\n  margin-bottom: 2rem;\n  font-weight: 800;\n  display: flex;\n  font-size: 20px;\n  border-bottom: #333 solid 1px;\n}\n\n.menu-header {\n  text-align: center;\n  justify-content: center;\n}\n\n#grid-container {\n  justify-content: center;\n  width: 30%;\n}\n\n.img-fluid {\n  width: 300px;\n}\n\n.column {\n  float: left;\n  width: 25%;\n  padding: 0 10px;\n}\n\n.feedback {\n  float: right;\n}\n\n.food-list {\n  margin-left: 5%;\n  justify-content: center;\n}\n\n.food-image {\n  width: 100%;\n}\n\n.row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n.logo {\n  width: 20px;\n}\n\nfooter {\n  margin-top: 2rem;\n  width: 100%;\n  border-top: 1px solid #333;\n}\n\n.page-footer {\n  padding: 2rem 1rem;\n  font-size: 1.25rem;\n}\n\n@media screen and (max-width: 600px) {\n  .column {\n    width: 100%;\n    display: block;\n    margin-bottom: 20px;\n  }\n}\n\n#home {\n  position: relative;\n}\n\n.nav-link span {\n  color: transparent;\n}\n\n.nav-link.active span {\n  color: white;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

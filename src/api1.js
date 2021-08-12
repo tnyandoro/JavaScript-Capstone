@@ -1,15 +1,41 @@
-import cardList from './components/cardList';
-import commentPopup from './components/commentPopup';
-import commentList from './components/commentList';
+import cardList from './components/cardList.js';
+import navLinks from './components/navLinks.js';
+import commentPopup from './components/commentPopup.js';
+import commentList from './components/commentList.js';
 
 class Meal {
   static async getList(category) {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
-    const list = await response.json();
+    const categoryKey = `category_${category}`;
+    let categoryData = localStorage.getItem(categoryKey);
+
+    if (!categoryData) {
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+      const list = await response.json();
+      categoryData = list.meals;
+      localStorage.setItem(categoryKey, JSON.stringify(categoryData));
+    } else {
+      categoryData = JSON.parse(categoryData);
+    }
+
     const likeResponse = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8wqVp7MJ1CKmqeCBEWgG/likes');
     const likes = await likeResponse.json();
+    cardList(categoryData, likes, category);
+  }
 
-    cardList(list.meals, likes, category);
+  static async getCategories() {
+    let categories = localStorage.getItem('categories');
+
+    if (!categories) {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+      const list = await response.json();
+      categories = list.meals;
+      localStorage.setItem('categories', JSON.stringify(categories));
+    } else {
+      categories = JSON.parse(categories);
+    }
+
+    navLinks(categories);
+    return categories;
   }
 
   static async getItem(id) {
