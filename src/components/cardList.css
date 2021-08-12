@@ -3,3 +3,9 @@
   grid-template-columns: auto auto auto;
   grid-gap: 3rem;
 }
+
+@media (max-width: 768px) { /*breakpoint*/
+  #meal-items {
+    flex-direction: column;
+  }
+}
