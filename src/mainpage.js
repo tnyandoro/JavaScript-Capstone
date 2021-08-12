@@ -1,8 +1,6 @@
-import Meal from './api1'
+import Meal from './api1';
 
-function mainpage() { 
-
+function mainpage() {
   Meal.getList('Seafood');
-  
 }
 export default mainpage;

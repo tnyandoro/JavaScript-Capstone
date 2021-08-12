@@ -1,7 +1,6 @@
 import './card.css';
 
-const card = (meal) => {
-    return `
+const card = (meal) => `
     <div class="card">
         <img src=${meal.strMealThumb}>
         <div class="desc">
@@ -11,6 +10,5 @@ const card = (meal) => {
         </div>
     </div>
     `;
-}
 
 export default card;

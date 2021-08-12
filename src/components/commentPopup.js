@@ -1,10 +1,10 @@
 import './commentPopup.css';
 
 const commentPopup = (meal) => {
-    const mainContainer = document.getElementById('home');
-    const commentPopup =document.createElement('div');
-    commentPopup.className = 'popup';
-    commentPopup.innerHTML =`
+  const mainContainer = document.getElementById('home');
+  const commentPopup = document.createElement('div');
+  commentPopup.className = 'popup';
+  commentPopup.innerHTML = `
                <div class="row comment-container">
                     <div class="col-12 image-div text-center"> 
                       <div class="image-container"><img src=${meal.strMealThumb}></div>
@@ -29,11 +29,11 @@ const commentPopup = (meal) => {
                     </div>
                 </div>
     `;
-    mainContainer.appendChild(commentPopup)
-    const closeBtn = document.querySelector('.close-btn');
-    closeBtn.addEventListener('click', () => {
-        commentPopup.remove();
-    })
-}
+  mainContainer.appendChild(commentPopup);
+  const closeBtn = document.querySelector('.close-btn');
+  closeBtn.addEventListener('click', () => {
+    commentPopup.remove();
+  });
+};
 
 export default commentPopup;
