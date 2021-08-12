@@ -1,5 +1,6 @@
+/* eslint-disable import/no-cycle */
 import './commentPopup.css';
-import Meal from '../api1';
+import Meal from '../api1.js';
 
 const commentPopup = (meal) => {
   const mainContainer = document.getElementById('home');
@@ -21,7 +22,7 @@ const commentPopup = (meal) => {
                     <div class="commentForm form-group">
                        <div><input type="text" id="name" name="name" class="form-control" placeholder="Your Name"></div><br>
                        <div> <textarea id="comment-text" name="comment-text" class="form-control" rows="4" cols="50" placeholder="Your insight">Your Insight</textarea></div><br>
-                       <div><button type="button" class='sub-btn' data-itemid=${meal.idMeal}>Submit</button></div>
+                       <div><button type="button" class='sub-btn btn btn-success' data-itemid=${meal.idMeal}>Submit</button></div>
                     </div>
                 </div>
     `;

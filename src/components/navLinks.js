@@ -1,4 +1,5 @@
 import navLink from './navLink.js';
+// eslint-disable-next-line import/no-cycle
 import Meal from '../api1.js';
 
 let currentCategory = '';

@@ -51,10 +51,18 @@ header {
   width: 100%;
 }
 
-.row:after {
+/* .row:after {
   content: "";
   display: table;
   clear: both;
+} */
+
+.close-btn {
+  background-color: rgb(220, 50, 20);
+  color: #fff;
+  border: red;
+  width: 50px;
+  height: 50px;
 }
 
 .logo {
@@ -72,16 +80,26 @@ footer {
   font-size: 1.25rem;
 }
 
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
-}
-
 #home {
   position: relative;
+}
+
+a.nav-link {
+  color: rgb(243, 243, 243);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
 }
 
 .nav-link span {

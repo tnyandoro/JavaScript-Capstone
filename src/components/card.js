@@ -6,7 +6,7 @@ const card = (meal, likeItem, category) => `
         <div class="desc">
             <h3>${meal.strMeal}</h3>
             <div class="feedback"><span class="likes">${likeItem === undefined ? 0 : likeItem.likes}</span> likes <button type="button" class="like-btn btn btn-primary" data-itemid=${meal.idMeal} data-cat=${category}><i class="fa fa-heart"></i></button></div>
-            <button type="button" class="comment-btn btn-success" data-itemId=${meal.idMeal}>Comment</button>
+            <button type="button" class="comment-btn btn btn-success" data-itemId=${meal.idMeal}>Comment</button>
         </div>
     </div>
     `;

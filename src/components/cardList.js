@@ -1,6 +1,7 @@
 import './cardList.css';
-import card from './card';
-import Meal from '../api1';
+import card from './card.js';
+// eslint-disable-next-line import/no-cycle
+import Meal from '../api1.js';
 
 const cardList = (list, likes, category) => {
   const navLinksContainer = document.getElementById('navLinks');
@@ -11,7 +12,8 @@ const cardList = (list, likes, category) => {
 
   listContainer.innerHTML = '';
   list.forEach((meal) => {
-    listContainer.innerHTML += card(meal, likes.find((item) => item.item_id === Number(meal.idMeal)), category);
+    listContainer.innerHTML
+    += card(meal, likes.find((item) => item.item_id === Number(meal.idMeal)), category);
   });
 
   const commentBtns = document.querySelectorAll('.comment-btn');
