@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+header {
+  width: 100%;
+  background-color: #664c06;
+  gap: 5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  display: flex;
+  font-size: 16px;
+  border-bottom: #333 solid 1px;
+}
+
+.menu-header {
+  text-align: center;
+  justify-content: center;
+}
+
+#grid-container {
+  justify-content: center;
+  width: 30%;
+}
+
+.img-fluid {
+  width: 300px;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.feedback {
+  float: right;
+}
+
+.food-list {
+  margin-left: 5%;
+  justify-content: center;
+}
+
+.food-image {
+  width: 100%;
+}
+
+/* .row:after {
+  content: "";
+  display: table;
+  clear: both;
+} */
+
+.close-btn {
+  background-color: rgb(220, 50, 20);
+  color: #fff;
+  border: red;
+  width: 50px;
+  height: 50px;
+}
+
+.logo {
+  width: 20px;
+}
+
+footer {
+  margin-top: 2rem;
+  width: 100%;
+  border-top: 1px solid #333;
+}
+
+.page-footer {
+  padding: 2rem 1rem;
+  font-size: 1.25rem;
+}
+
+#home {
+  position: relative;
+}
+
+a.nav-link {
+  color: rgb(243, 243, 243);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.nav-link span {
+  color: transparent;
+}
+
+.nav-link.active span {
+  color: white;
+}

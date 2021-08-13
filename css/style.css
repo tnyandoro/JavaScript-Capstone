@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+header {
+  width: 70%;
+  gap: 7rem;
+  justify-content: center;
+  margin: auto;
+  padding: 0 3em;
+  font-weight: 800;
+  display: flex;
+  font-size: 20px;
+}
+
+#grid-container {
+  justify-content: center;
+  width: 30%;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.food-list {
+  margin-left: 5%;
+  justify-content: center;
+}
+
+.food-image {
+  width: 100%;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.logo {
+  width: 20px;
+}
+
+footer {
+  margin-top: 2rem;
+  width: 100%;
+  border-top: 1px solid #333;
+}
+
+.page-footer {
+  padding: 2rem 1rem;
+  font-size: 1.25rem;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}

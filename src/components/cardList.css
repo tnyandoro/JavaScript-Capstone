@@ -1,0 +1,11 @@
+#meal-items {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  #meal-items {
+    flex-direction: column;
+  }
+}

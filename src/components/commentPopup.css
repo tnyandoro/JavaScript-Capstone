@@ -1,0 +1,41 @@
+.popup {
+  background-color: gainsboro;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
+  height: 150vh;
+}
+
+.image-div {
+  display: flex;
+  margin-top: 50px;
+}
+
+.image-container {
+  width: 100%;
+  color: black;
+}
+
+.imgg {
+  width: 100%;
+}
+
+.comment-container {
+  padding: 10px;
+}
+
+.form-control {
+  width: 50%;
+}
+
+.commentForm {
+  margin-left: 10px;
+}
+
+.close-btn {
+  display: block;
+  float: right;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}

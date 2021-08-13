@@ -1,0 +1,16 @@
+{
+  "version":"1.0.0","name":"javascript-capstone","dependencies": {
+    "@babel/core":{}
+    ,"@babel/preset-env":{}
+    ,"@babel/runtime":{}
+    ,"async-hook-jl":{}
+    ,"async-listener":{}
+    ,"async":{}
+    ,"babel-loader":{}
+    ,"express":{}
+    ,"gh-pages":{}
+    ,"jquery":{}
+    ,"lodash":{}
+    ,"webpack-dev-middleware":{}
+  }
+}
