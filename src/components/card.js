@@ -9,6 +9,7 @@ const card = (meal, likeItem, category) => `
             <button type="button" class="comment-btn btn btn-success" data-itemId=${meal.idMeal}>Comment</button>
         </div>
     </div>
+    
     `;
 
 export default card;
