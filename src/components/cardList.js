@@ -7,7 +7,7 @@ import countList from './count.js';
 const cardList = (list, likes, category) => {
   const navLinksContainer = document.getElementById('navLinks');
   const activeLinkSpan = navLinksContainer.querySelectorAll('.nav-link.active > span')[0];
-  if (activeLinkSpan) activeLinkSpan.innerHTML = `(${countList(list)})`;
+  if (activeLinkSpan) activeLinkSpan.innerHTML = `(${list === undefined ? 0 : countList(list)})`;
 
   const listContainer = document.getElementById('meal-items');
 
