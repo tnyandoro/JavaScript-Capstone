@@ -17,6 +17,7 @@
 - JavaScript-
 - MDB API
 - Involvement API
+- Jest Test
 
 ## Our Project
 
@@ -24,7 +25,7 @@ This project is found on the following Repo [Fantastic Restaurant](https://githu
 
 ## Live Demo
 
-You can view the live demo of the project [Here!](/)
+You can view the live demo of the project [Here!](https://tynandoro.github.io/JavaScript-Capstone/)
 
 ### Prerequisites
 
@@ -36,6 +37,7 @@ A Morden Browser
 - Cd into your directory
 - Run npm install
 - Type: npm run build
+- Run npm start
 ## Authors
 
 👤 **Tendai Nyandoro**
@@ -63,7 +65,8 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - This project was inspired by the [Microverse](https://www.microverse.org/) for the  program
-- Thanks to
+- Thanks to [The MealDB](https://www.themealdb.com/)
+- Thanks to [The Involvement API](https://www.notion.so/Involvement-API-869e60b5ad104603aa6db59e08150270)
 
 
 ## 📝 License
