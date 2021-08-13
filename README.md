@@ -25,7 +25,7 @@ This project is found on the following Repo [Fantastic Restaurant](https://githu
 
 ## Live Demo
 
-You can view the live demo of the project [Here!](https://tynandoro.github.io/JavaScript-Capstone/)
+You can view the live demo of the project [Here!](https://tnyandoro.github.io/JavaScript-Capstone/)
 
 ### Prerequisites
 
