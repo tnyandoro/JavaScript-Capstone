@@ -3,18 +3,24 @@
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 header {
-  width: 70%;
-  gap: 7rem;
+  width: 100%;
+  background-color: #664c06;
+  gap: 5rem;
   justify-content: center;
-  margin: auto;
-  padding: 0 3em;
+  margin-bottom: 2rem;
   font-weight: 800;
   display: flex;
-  font-size: 20px;
+  font-size: 16px;
+  border-bottom: #333 solid 1px;
+}
+
+.menu-header {
+  text-align: center;
+  justify-content: center;
 }
 
 #grid-container {
@@ -22,10 +28,18 @@ header {
   width: 30%;
 }
 
+.img-fluid {
+  width: 300px;
+}
+
 .column {
   float: left;
   width: 25%;
   padding: 0 10px;
+}
+
+.feedback {
+  float: right;
 }
 
 .food-list {
@@ -37,10 +51,18 @@ header {
   width: 100%;
 }
 
-.row:after {
+/* .row:after {
   content: "";
   display: table;
   clear: both;
+} */
+
+.close-btn {
+  background-color: rgb(220, 50, 20);
+  color: #fff;
+  border: red;
+  width: 50px;
+  height: 50px;
 }
 
 .logo {
@@ -58,14 +80,32 @@ footer {
   font-size: 1.25rem;
 }
 
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-    display: block;
-    margin-bottom: 20px;
-  }
-}
-
 #home {
   position: relative;
+}
+
+a.nav-link {
+  color: rgb(243, 243, 243);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.nav-link span {
+  color: transparent;
+}
+
+.nav-link.active span {
+  color: white;
 }

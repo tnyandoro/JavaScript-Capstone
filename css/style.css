@@ -37,7 +37,7 @@ header {
   width: 100%;
 }
 
-.row:after {
+.row::after {
   content: "";
   display: table;
   clear: both;

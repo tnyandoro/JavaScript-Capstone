@@ -1,13 +1,20 @@
+import card from './card.js';
 import './cardList.css';
-import card from './card';
-import Meal from '../api1';
+// eslint-disable-next-line import/no-cycle
+import Meal from '../api1.js';
+import countList from './count.js';
 
 const cardList = (list, likes, category) => {
+  const navLinksContainer = document.getElementById('navLinks');
+  const activeLinkSpan = navLinksContainer.querySelectorAll('.nav-link.active > span')[0];
+  if (activeLinkSpan) activeLinkSpan.innerHTML = `(${list === undefined ? 0 : countList(list)})`;
+
   const listContainer = document.getElementById('meal-items');
-  console.log(likes);
+
   listContainer.innerHTML = '';
   list.forEach((meal) => {
-    listContainer.innerHTML += card(meal, likes.find((item) => item.item_id === Number(meal.idMeal)), category);
+    listContainer.innerHTML
+    += card(meal, likes.find((item) => item.item_id === Number(meal.idMeal)), category);
   });
 
   const commentBtns = document.querySelectorAll('.comment-btn');
