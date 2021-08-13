@@ -1,6 +1,8 @@
+export const countComments = (comments) => comments.length;
+
 const commentList = (comments) => {
   const commentCount = document.getElementById('commentCount');
-  commentCount.innerHTML = `${comments.length}`;
+  commentCount.innerHTML = `${countComments(comments)}`;
 
   const commentList = document.querySelector('.comment-list');
   commentList.innerHTML = comments.map((comment) => `
