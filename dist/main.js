@@ -257,7 +257,7 @@ var Meal = /*#__PURE__*/function () {
 
               case 5:
                 comments = _context5.sent;
-                return _context5.abrupt("return", (0,_components_commentList_js__WEBPACK_IMPORTED_MODULE_7__.default)(comments));
+                return _context5.abrupt("return", (0,_components_commentList_js__WEBPACK_IMPORTED_MODULE_7__.default)(comments.error ? [] : comments));
 
               case 7:
               case "end":
@@ -338,7 +338,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var card = function card(meal, likeItem, category) {
-  return "\n    <div class=\"card\">\n        <img src=".concat(meal.strMealThumb, ">\n        <div class=\"desc\">\n            <h3>").concat(meal.strMeal, "</h3>\n            <div class=\"feedback\"><span class=\"likes\">").concat(likeItem === undefined ? 0 : likeItem.likes, "</span> likes <button type=\"button\" class=\"like-btn btn btn-primary\" data-itemid=").concat(meal.idMeal, " data-cat=").concat(category, "><i class=\"fa fa-heart\"></i></button></div>\n            <button type=\"button\" class=\"comment-btn btn-success\" data-itemId=").concat(meal.idMeal, ">Comment</button>\n        </div>\n    </div>\n    ");
+  return "\n    <div class=\"card\">\n        <img src=".concat(meal.strMealThumb, ">\n        <div class=\"desc\">\n            <h3>").concat(meal.strMeal, "</h3>\n            <div class=\"feedback\"><span class=\"likes\">").concat(likeItem === undefined ? 0 : likeItem.likes, "</span> likes <button type=\"button\" class=\"like-btn btn btn-primary\" data-itemid=").concat(meal.idMeal, " data-cat=").concat(category, "><i class=\"fa fa-heart\"></i></button></div>\n            <button type=\"button\" class=\"comment-btn btn btn-success\" data-itemId=").concat(meal.idMeal, ">Comment</button>\n        </div>\n    </div>\n    ");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (card);
@@ -356,9 +356,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _cardList_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cardList.css */ "./src/components/cardList.css");
-/* harmony import */ var _card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./card */ "./src/components/card.js");
-/* harmony import */ var _api1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api1 */ "./src/api1.js");
+/* harmony import */ var _card_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./card.js */ "./src/components/card.js");
+/* harmony import */ var _cardList_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cardList.css */ "./src/components/cardList.css");
+/* harmony import */ var _api1_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../api1.js */ "./src/api1.js");
+/* harmony import */ var _count_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./count.js */ "./src/components/count.js");
+
+ // eslint-disable-next-line import/no-cycle
 
 
 
@@ -366,24 +369,24 @@ __webpack_require__.r(__webpack_exports__);
 var cardList = function cardList(list, likes, category) {
   var navLinksContainer = document.getElementById('navLinks');
   var activeLinkSpan = navLinksContainer.querySelectorAll('.nav-link.active > span')[0];
-  if (activeLinkSpan) activeLinkSpan.innerHTML = "(".concat(list.length, ")");
+  if (activeLinkSpan) activeLinkSpan.innerHTML = "(".concat((0,_count_js__WEBPACK_IMPORTED_MODULE_3__.default)(list), ")");
   var listContainer = document.getElementById('meal-items');
   listContainer.innerHTML = '';
   list.forEach(function (meal) {
-    listContainer.innerHTML += (0,_card__WEBPACK_IMPORTED_MODULE_1__.default)(meal, likes.find(function (item) {
+    listContainer.innerHTML += (0,_card_js__WEBPACK_IMPORTED_MODULE_0__.default)(meal, likes.find(function (item) {
       return item.item_id === Number(meal.idMeal);
     }), category);
   });
   var commentBtns = document.querySelectorAll('.comment-btn');
   commentBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      _api1__WEBPACK_IMPORTED_MODULE_2__.default.getItem(btn.dataset.itemid);
+      _api1_js__WEBPACK_IMPORTED_MODULE_2__.default.getItem(btn.dataset.itemid);
     });
   });
   var likeBtns = document.querySelectorAll('.like-btn');
   likeBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      _api1__WEBPACK_IMPORTED_MODULE_2__.default.postLike(btn.dataset.itemid, btn.dataset.cat);
+      _api1_js__WEBPACK_IMPORTED_MODULE_2__.default.postLike(btn.dataset.itemid, btn.dataset.cat);
     });
   });
 };
@@ -401,11 +404,16 @@ var cardList = function cardList(list, likes, category) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "countComments": () => (/* binding */ countComments),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+var countComments = function countComments(comments) {
+  return comments.length;
+};
+
 var commentList = function commentList(comments) {
   var commentCount = document.getElementById('commentCount');
-  commentCount.innerHTML = "".concat(comments.length);
+  commentCount.innerHTML = "".concat(countComments(comments));
   var commentList = document.querySelector('.comment-list');
   commentList.innerHTML = comments.map(function (comment) {
     return "\n          <div class=\"comment\">\n            <div class=\"comment-author\">".concat(comment.username, "</div>\n            <div class=\"comment-date\">").concat(comment.creation_date, "</div>\n            <div class=\"comment-content\">").concat(comment.comment, "</div>\n          </div>\n        ");
@@ -428,7 +436,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _commentPopup_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./commentPopup.css */ "./src/components/commentPopup.css");
-/* harmony import */ var _api1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api1 */ "./src/api1.js");
+/* harmony import */ var _api1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api1.js */ "./src/api1.js");
+/* eslint-disable import/no-cycle */
 
 
 
@@ -436,7 +445,7 @@ var commentPopup = function commentPopup(meal) {
   var mainContainer = document.getElementById('home');
   var commentPopup = document.createElement('div');
   commentPopup.className = 'popup';
-  commentPopup.innerHTML = "\n               <button type=\"button\" class=\"close-btn\">X</button>\n               <div class=\"row comment-container\">\n                    <div class=\"col-12 image-div text-center\"> \n                      <div class=\"image-container\"><img src=".concat(meal.strMealThumb, " class=\"img-fluid\"></div>\n                    </div>\n                    <div class='col-12 text-center'> <h2>").concat(meal.strMeal, "</h2></div>\n                    <div class='col-12'>").concat(meal.strTags, "</div>\n                    <div class='col-12'>").concat(meal.strYoutube, "</div>\n                    <div class='col-12'>").concat(meal.strIngredient1, "</div>\n                    <h3>Comments (<span id=\"commentCount\"></span>)</h3>\n                    <div class='comment-list'></div>\n                    <div class='col-12 text-center'> <h2> Add a comment </h2></div>\n                    <div class=\"commentForm form-group\">\n                       <div><input type=\"text\" id=\"name\" name=\"name\" class=\"form-control\" placeholder=\"Your Name\"></div><br>\n                       <div> <textarea id=\"comment-text\" name=\"comment-text\" class=\"form-control\" rows=\"4\" cols=\"50\" placeholder=\"Your insight\">Your Insight</textarea></div><br>\n                       <div><button type=\"button\" class='sub-btn' data-itemid=").concat(meal.idMeal, ">Submit</button></div>\n                    </div>\n                </div>\n    ");
+  commentPopup.innerHTML = "\n                <button type=\"button\" class=\"close-btn\">X</button>\n                <div class=\"row comment-container\">\n                      <div class=\"col-12 image-div text-center\"> \n                        <div class=\"image-container\"><img src=".concat(meal.strMealThumb, " class=\"img-fluid\"></div>\n                      </div>\n                      <div class='col-12 text-center'> <h2>").concat(meal.strMeal, "</h2></div>\n                      <div class='col-12'><b>Meal Type:</b> ").concat(meal.strTags, "</div>\n                      <div class='col-12'><b>Instructions:</b> ").concat(meal.strYoutube, "</div>\n                      <div class='col-12'><b> Ingredients:</b> ").concat(meal.strIngredient1, "</div>\n                      <h3>Comments (<span id=\"commentCount\"></span>)</h3>\n                      <div class='comment-list'></div>\n                      <div class='col-12 text-center'> <h2> Add a comment </h2></div>\n                      <div class=\"commentForm form-group\">\n                        <div><input type=\"text\" id=\"name\" name=\"name\" class=\"form-control\" placeholder=\"Your Name\"></div><br>\n                        <div> <textarea id=\"comment-text\" name=\"comment-text\" class=\"form-control\" rows=\"4\" cols=\"50\" placeholder=\"Your insight\">Your Insight</textarea></div><br>\n                        <div><button type=\"button\" class='sub-btn btn btn-success' data-itemid=").concat(meal.idMeal, ">Submit</button></div>\n                      </div>\n                  </div>\n    ");
   mainContainer.appendChild(commentPopup);
   var closeBtn = document.querySelector('.close-btn');
   closeBtn.addEventListener('click', function () {
@@ -444,12 +453,31 @@ var commentPopup = function commentPopup(meal) {
   });
   var subBtn = document.querySelector('.sub-btn');
   subBtn.addEventListener('click', function () {
-    _api1__WEBPACK_IMPORTED_MODULE_1__.default.postComment(subBtn.dataset.itemid, document.querySelector('#name').value, document.querySelector('#comment-text').value);
+    _api1_js__WEBPACK_IMPORTED_MODULE_1__.default.postComment(subBtn.dataset.itemid, document.querySelector('#name').value, document.querySelector('#comment-text').value);
   });
-  _api1__WEBPACK_IMPORTED_MODULE_1__.default.getComments(meal.idMeal);
+  _api1_js__WEBPACK_IMPORTED_MODULE_1__.default.getComments(meal.idMeal);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (commentPopup);
+
+/***/ }),
+
+/***/ "./src/components/count.js":
+/*!*********************************!*\
+  !*** ./src/components/count.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var countList = function countList(list) {
+  return list.length;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (countList);
 
 /***/ }),
 
@@ -465,7 +493,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var navLink = function navLink(category) {
-  return "\n<li class=\"nav-item pt-4\">\n    <a class=\"nav-link\" href=\"#\" category=\"".concat(category, "\">").concat(category, " <span></span></a>\n</li>\n");
+  return "\n<li class=\"nav-item pt-4 nav-color\">\n    <a class=\"nav-link \" href=\"#\" category=\"".concat(category, "\">").concat(category, " <span></span></a>\n</li>\n");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (navLink);
@@ -485,6 +513,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _navLink_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./navLink.js */ "./src/components/navLink.js");
 /* harmony import */ var _api1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../api1.js */ "./src/api1.js");
+ // eslint-disable-next-line import/no-cycle
 
 
 var currentCategory = '';
@@ -708,7 +737,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".popup {\n  background-color: gainsboro;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 2000;\n  height: 999999999999px;\n}\n\n.image-div {\n  display: flex;\n  margin-top: 50px;\n}\n\n.image-container {\n  width: 100%;\n  color: black;\n}\n\n.imgg {\n  width: 100%;\n}\n\n.comment-container {\n  padding: 10px;\n}\n\n.form-control {\n  width: 50%;\n}\n\n.commentForm {\n  margin-left: 10px;\n}\n\n.close-btn {\n  display: block;\n  float: right;\n  margin-right: 1rem;\n  margin-top: 1rem;\n}\n", "",{"version":3,"sources":["webpack://./src/components/commentPopup.css"],"names":[],"mappings":"AAAA;EACE,2BAA2B;EAC3B,kBAAkB;EAClB,MAAM;EACN,WAAW;EACX,aAAa;EACb,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,UAAU;AACZ;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,cAAc;EACd,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;AAClB","sourcesContent":[".popup {\n  background-color: gainsboro;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 2000;\n  height: 999999999999px;\n}\n\n.image-div {\n  display: flex;\n  margin-top: 50px;\n}\n\n.image-container {\n  width: 100%;\n  color: black;\n}\n\n.imgg {\n  width: 100%;\n}\n\n.comment-container {\n  padding: 10px;\n}\n\n.form-control {\n  width: 50%;\n}\n\n.commentForm {\n  margin-left: 10px;\n}\n\n.close-btn {\n  display: block;\n  float: right;\n  margin-right: 1rem;\n  margin-top: 1rem;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".popup {\n  background-color: gainsboro;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 2000;\n  height: 150vh;\n}\n\n.image-div {\n  display: flex;\n  margin-top: 50px;\n}\n\n.image-container {\n  width: 100%;\n  color: black;\n}\n\n.imgg {\n  width: 100%;\n}\n\n.comment-container {\n  padding: 10px;\n}\n\n.form-control {\n  width: 50%;\n}\n\n.commentForm {\n  margin-left: 10px;\n}\n\n.close-btn {\n  display: block;\n  float: right;\n  margin-right: 1rem;\n  margin-top: 1rem;\n}\n", "",{"version":3,"sources":["webpack://./src/components/commentPopup.css"],"names":[],"mappings":"AAAA;EACE,2BAA2B;EAC3B,kBAAkB;EAClB,MAAM;EACN,WAAW;EACX,aAAa;EACb,aAAa;AACf;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,UAAU;AACZ;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,cAAc;EACd,YAAY;EACZ,kBAAkB;EAClB,gBAAgB;AAClB","sourcesContent":[".popup {\n  background-color: gainsboro;\n  position: absolute;\n  top: 0;\n  width: 100%;\n  z-index: 2000;\n  height: 150vh;\n}\n\n.image-div {\n  display: flex;\n  margin-top: 50px;\n}\n\n.image-container {\n  width: 100%;\n  color: black;\n}\n\n.imgg {\n  width: 100%;\n}\n\n.comment-container {\n  padding: 10px;\n}\n\n.form-control {\n  width: 50%;\n}\n\n.commentForm {\n  margin-left: 10px;\n}\n\n.close-btn {\n  display: block;\n  float: right;\n  margin-right: 1rem;\n  margin-top: 1rem;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -735,7 +764,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: \"Lato\", sans-serif;\n}\n\nheader {\n  width: 100%;\n  background-color: #c69c2a;\n  gap: 5rem;\n  justify-content: center;\n  margin-bottom: 2rem;\n  font-weight: 800;\n  display: flex;\n  font-size: 20px;\n  border-bottom: #333 solid 1px;\n}\n\n.menu-header {\n  text-align: center;\n  justify-content: center;\n}\n\n#grid-container {\n  justify-content: center;\n  width: 30%;\n}\n\n.img-fluid {\n  width: 300px;\n}\n\n.column {\n  float: left;\n  width: 25%;\n  padding: 0 10px;\n}\n\n.feedback {\n  float: right;\n}\n\n.food-list {\n  margin-left: 5%;\n  justify-content: center;\n}\n\n.food-image {\n  width: 100%;\n}\n\n.row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n.logo {\n  width: 20px;\n}\n\nfooter {\n  margin-top: 2rem;\n  width: 100%;\n  border-top: 1px solid #333;\n}\n\n.page-footer {\n  padding: 2rem 1rem;\n  font-size: 1.25rem;\n}\n\n@media screen and (max-width: 600px) {\n  .column {\n    width: 100%;\n    display: block;\n    margin-bottom: 20px;\n  }\n}\n\n#home {\n  position: relative;\n}\n\n.nav-link span {\n  color: transparent;\n}\n\n.nav-link.active span {\n  color: white;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;AACxB;;AAEA;EACE,+BAA+B;AACjC;;AAEA;EACE,WAAW;EACX,yBAAyB;EACzB,SAAS;EACT,uBAAuB;EACvB,mBAAmB;EACnB,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,6BAA6B;AAC/B;;AAEA;EACE,kBAAkB;EAClB,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;EACvB,UAAU;AACZ;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;EACX,UAAU;EACV,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,eAAe;EACf,uBAAuB;AACzB;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,WAAW;EACX,cAAc;EACd,WAAW;AACb;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,gBAAgB;EAChB,WAAW;EACX,0BAA0B;AAC5B;;AAEA;EACE,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE;IACE,WAAW;IACX,cAAc;IACd,mBAAmB;EACrB;AACF;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,YAAY;AACd","sourcesContent":["* {\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: \"Lato\", sans-serif;\n}\n\nheader {\n  width: 100%;\n  background-color: #c69c2a;\n  gap: 5rem;\n  justify-content: center;\n  margin-bottom: 2rem;\n  font-weight: 800;\n  display: flex;\n  font-size: 20px;\n  border-bottom: #333 solid 1px;\n}\n\n.menu-header {\n  text-align: center;\n  justify-content: center;\n}\n\n#grid-container {\n  justify-content: center;\n  width: 30%;\n}\n\n.img-fluid {\n  width: 300px;\n}\n\n.column {\n  float: left;\n  width: 25%;\n  padding: 0 10px;\n}\n\n.feedback {\n  float: right;\n}\n\n.food-list {\n  margin-left: 5%;\n  justify-content: center;\n}\n\n.food-image {\n  width: 100%;\n}\n\n.row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n.logo {\n  width: 20px;\n}\n\nfooter {\n  margin-top: 2rem;\n  width: 100%;\n  border-top: 1px solid #333;\n}\n\n.page-footer {\n  padding: 2rem 1rem;\n  font-size: 1.25rem;\n}\n\n@media screen and (max-width: 600px) {\n  .column {\n    width: 100%;\n    display: block;\n    margin-bottom: 20px;\n  }\n}\n\n#home {\n  position: relative;\n}\n\n.nav-link span {\n  color: transparent;\n}\n\n.nav-link.active span {\n  color: white;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: \"Lato\", sans-serif;\n}\n\nheader {\n  width: 100%;\n  background-color: #664c06;\n  gap: 5rem;\n  justify-content: center;\n  margin-bottom: 2rem;\n  font-weight: 800;\n  display: flex;\n  font-size: 16px;\n  border-bottom: #333 solid 1px;\n}\n\n.menu-header {\n  text-align: center;\n  justify-content: center;\n}\n\n#grid-container {\n  justify-content: center;\n  width: 30%;\n}\n\n.img-fluid {\n  width: 300px;\n}\n\n.column {\n  float: left;\n  width: 25%;\n  padding: 0 10px;\n}\n\n.feedback {\n  float: right;\n}\n\n.food-list {\n  margin-left: 5%;\n  justify-content: center;\n}\n\n.food-image {\n  width: 100%;\n}\n\n/* .row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n} */\n\n.close-btn {\n  background-color: rgb(220, 50, 20);\n  color: #fff;\n  border: red;\n  width: 50px;\n  height: 50px;\n}\n\n.logo {\n  width: 20px;\n}\n\nfooter {\n  margin-top: 2rem;\n  width: 100%;\n  border-top: 1px solid #333;\n}\n\n.page-footer {\n  padding: 2rem 1rem;\n  font-size: 1.25rem;\n}\n\n#home {\n  position: relative;\n}\n\na.nav-link {\n  color: rgb(243, 243, 243);\n  background-color: transparent;\n  text-decoration: none;\n}\n\na:visited {\n  color: rgb(255, 255, 255);\n  background-color: transparent;\n  text-decoration: none;\n}\n\na:hover {\n  color: red;\n  background-color: transparent;\n  text-decoration: underline;\n}\n\n.nav-link span {\n  color: transparent;\n}\n\n.nav-link.active span {\n  color: white;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;AACxB;;AAEA;EACE,+BAA+B;AACjC;;AAEA;EACE,WAAW;EACX,yBAAyB;EACzB,SAAS;EACT,uBAAuB;EACvB,mBAAmB;EACnB,gBAAgB;EAChB,aAAa;EACb,eAAe;EACf,6BAA6B;AAC/B;;AAEA;EACE,kBAAkB;EAClB,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;EACvB,UAAU;AACZ;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;EACX,UAAU;EACV,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,eAAe;EACf,uBAAuB;AACzB;;AAEA;EACE,WAAW;AACb;;AAEA;;;;GAIG;;AAEH;EACE,kCAAkC;EAClC,WAAW;EACX,WAAW;EACX,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,gBAAgB;EAChB,WAAW;EACX,0BAA0B;AAC5B;;AAEA;EACE,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;EACzB,6BAA6B;EAC7B,qBAAqB;AACvB;;AAEA;EACE,yBAAyB;EACzB,6BAA6B;EAC7B,qBAAqB;AACvB;;AAEA;EACE,UAAU;EACV,6BAA6B;EAC7B,0BAA0B;AAC5B;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,YAAY;AACd","sourcesContent":["* {\n  box-sizing: border-box;\n}\n\nbody {\n  font-family: \"Lato\", sans-serif;\n}\n\nheader {\n  width: 100%;\n  background-color: #664c06;\n  gap: 5rem;\n  justify-content: center;\n  margin-bottom: 2rem;\n  font-weight: 800;\n  display: flex;\n  font-size: 16px;\n  border-bottom: #333 solid 1px;\n}\n\n.menu-header {\n  text-align: center;\n  justify-content: center;\n}\n\n#grid-container {\n  justify-content: center;\n  width: 30%;\n}\n\n.img-fluid {\n  width: 300px;\n}\n\n.column {\n  float: left;\n  width: 25%;\n  padding: 0 10px;\n}\n\n.feedback {\n  float: right;\n}\n\n.food-list {\n  margin-left: 5%;\n  justify-content: center;\n}\n\n.food-image {\n  width: 100%;\n}\n\n/* .row:after {\n  content: \"\";\n  display: table;\n  clear: both;\n} */\n\n.close-btn {\n  background-color: rgb(220, 50, 20);\n  color: #fff;\n  border: red;\n  width: 50px;\n  height: 50px;\n}\n\n.logo {\n  width: 20px;\n}\n\nfooter {\n  margin-top: 2rem;\n  width: 100%;\n  border-top: 1px solid #333;\n}\n\n.page-footer {\n  padding: 2rem 1rem;\n  font-size: 1.25rem;\n}\n\n#home {\n  position: relative;\n}\n\na.nav-link {\n  color: rgb(243, 243, 243);\n  background-color: transparent;\n  text-decoration: none;\n}\n\na:visited {\n  color: rgb(255, 255, 255);\n  background-color: transparent;\n  text-decoration: none;\n}\n\na:hover {\n  color: red;\n  background-color: transparent;\n  text-decoration: underline;\n}\n\n.nav-link span {\n  color: transparent;\n}\n\n.nav-link.active span {\n  color: white;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -6,7 +6,7 @@
 
 |Main Project page
 
-|![Fastantistic Restaurant]()|
+|![Fastantistic Restaurant](https://user-images.githubusercontent.com/30318155/129350424-7d1d5391-4d25-44d0-94a0-b08659b2d95a.png)|
 
 ## Built With
 
@@ -14,7 +14,9 @@
 - CSS3
 - Bootstrap
 - Font Awesome
-- JavaScript
+- JavaScript-
+- MDB API
+- Involvement API
 
 ## Our Project
 

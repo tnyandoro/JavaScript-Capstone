@@ -63,7 +63,7 @@ class Meal {
   static async getComments(id) {
     const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/8wqVp7MJ1CKmqeCBEWgG/comments?item_id=${id}`);
     const comments = await response.json();
-    return commentList(comments);
+    return commentList(comments.error ? [] : comments);
   }
 
   static async postLike(id, category) {
