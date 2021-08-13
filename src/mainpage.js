@@ -1,4 +1,4 @@
-import Meal from './api1';
+import Meal from './api1.js';
 
 async function mainpage() {
   const categories = await Meal.getCategories();

@@ -38,6 +38,9 @@ A Morden Browser
 - Run npm install
 - Type: npm run build
 - Run npm start
+
+### Setup
+- To Test npm install jest and run npm test
 ## Authors
 
 👤 **Tendai Nyandoro**

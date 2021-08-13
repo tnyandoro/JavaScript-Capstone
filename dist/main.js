@@ -338,7 +338,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var card = function card(meal, likeItem, category) {
-  return "\n    <div class=\"card\">\n        <img src=".concat(meal.strMealThumb, ">\n        <div class=\"desc\">\n            <h3>").concat(meal.strMeal, "</h3>\n            <div class=\"feedback\"><span class=\"likes\">").concat(likeItem === undefined ? 0 : likeItem.likes, "</span> likes <button type=\"button\" class=\"like-btn btn btn-primary\" data-itemid=").concat(meal.idMeal, " data-cat=").concat(category, "><i class=\"fa fa-heart\"></i></button></div>\n            <button type=\"button\" class=\"comment-btn btn btn-success\" data-itemId=").concat(meal.idMeal, ">Comment</button>\n        </div>\n    </div>\n    ");
+  return "\n    <div class=\"card\">\n        <img src=".concat(meal.strMealThumb, ">\n        <div class=\"desc\">\n            <h3>").concat(meal.strMeal, "</h3>\n            <div class=\"feedback\"><span class=\"likes\">").concat(likeItem === undefined ? 0 : likeItem.likes, "</span> likes <button type=\"button\" class=\"like-btn btn btn-primary\" data-itemid=").concat(meal.idMeal, " data-cat=").concat(category, "><i class=\"fa fa-heart\"></i></button></div>\n            <button type=\"button\" class=\"comment-btn btn btn-success\" data-itemId=").concat(meal.idMeal, ">Comment</button>\n        </div>\n    </div>\n    \n    ");
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (card);
@@ -563,7 +563,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _api1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./api1 */ "./src/api1.js");
+/* harmony import */ var _api1_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./api1.js */ "./src/api1.js");
 
 
 
@@ -580,12 +580,12 @@ function _mainpage() {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _api1__WEBPACK_IMPORTED_MODULE_2__.default.getCategories();
+            return _api1_js__WEBPACK_IMPORTED_MODULE_2__.default.getCategories();
 
           case 2:
             categories = _context.sent;
             _context.next = 5;
-            return _api1__WEBPACK_IMPORTED_MODULE_2__.default.getList(categories[0].strCategory);
+            return _api1_js__WEBPACK_IMPORTED_MODULE_2__.default.getList(categories[0].strCategory);
 
           case 5:
           case "end":
