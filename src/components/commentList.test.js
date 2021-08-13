@@ -1,4 +1,4 @@
-import commentList, { countComments } from './commentList.js';
+import { countComments } from './commentList.js';
 
 describe('CommentCounter', () => {
   test('should count the number of items in the array', () => {

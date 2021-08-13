@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import cardList from './components/cardList.js';
 import navLinks from './components/navLinks.js';
 import commentPopup from './components/commentPopup.js';
