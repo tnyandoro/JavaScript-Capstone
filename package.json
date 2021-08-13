@@ -11,6 +11,7 @@
     "hint": "^6.1.4",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.0.6",
     "style-loader": "^3.2.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
