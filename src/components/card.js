@@ -1,5 +1,3 @@
-import './card.css';
-
 const card = (meal, likeItem, category) => `
     <div class="card">
         <img src=${meal.strMealThumb}>
