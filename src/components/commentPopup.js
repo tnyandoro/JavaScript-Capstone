@@ -36,4 +36,3 @@ const commentPopup = (meal) => {
 };
 
 export default commentPopup;
-npm start
